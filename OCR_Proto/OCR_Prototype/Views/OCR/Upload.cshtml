@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "Upload";
+
+    List<SelectListItem> listItems = new List<SelectListItem>();
+    listItems.Add(new SelectListItem
+    {
+        Text = "Form A",
+        Value = "3"
+    });
+    listItems.Add(new SelectListItem
+    {
+        Text = "Form B",
+        Value = "4",
+    });
+}
+<div class="py-1">
+    <h4 class="mb-5">Upload PDF</h4>
+    <div class="alert alert-info col-7" role="alert">
+        Upload PDF file here to capture the text.
+    </div>
+</div>
+@using (Html.BeginForm("UploadImg", "OCR", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Select form type</label>
+        <div class="col-sm-5">
+            @Html.DropDownList("DDlDoc", new SelectList(listItems, "Value", "Text"), new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Select document to upload</label>
+        <div class="col-sm-5">
+            <input class="btn btn-dark" type="file" name="FileUpload" />
+        </div>
+    </div>
+    <input class="btn btn-primary" type="submit" name="Submit" id="Submit" value="Upload" />
+    <button class="btn btn-secondary" type="reset">Reset</button>
+
+}
+
+<div class="modal fade" id="modal_cgu" tabindex="-1" role="dialog" aria-labelledby="modal_cgu_Label">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modal_cgu_Label">Conditions générales<br>d'utilisation<span>V1.0</span></h4>
+            </div>
+            <div class="modal-body">
+                <strong>1. Lorem ipsum dolor sit amet</strong>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget accumsan orci. In hac   habitasse platea dictumst. Sed consectetur libero ante. Mauris vestibulum congue sodales. Nam lacinia vehicula augue id suscipit. Aenean elementum odio ipsum, eu hendrerit nisl gravida at. Nam facilisis pellentesque est, non aliquam ligula molestie nec. In ligula massa, varius eu odio eu, pellentesque facilisis velit. Nulla fringilla lacus a tellus dictum, vitae cursus arcu efficitur. Donec rutrum non diam vel tempus. Nulla placerat tellus at leo hendrerit bibendum. Suspendisse potenti.   </p>
+                <strong>2. Lorem ipsum dolor sit amet</strong>
+                <p>Pellentesque non tristique nisi. Nullam vel vulputate ipsum. Phasellus sed aliquet leo. Curabitur lobortis, eros vel interdum luctus, mi quam aliquam dui, quis aliquet dolor risus in sapien. Phasellus rhoncus at lorem eget cursus. Fusce a nunc massa. Aenean pellentesque, enim non egestas lobortis, elit enim venenatis nisi, vel imperdiet ligula ex a ex. Curabitur quis molestie leo. Pellentesque varius euismod lorem, eu euismod risus euismod et. Cras ut dolor a orci mollis vulputate elementum sit amet dolor. Ut dignissim sagittis elit, sit amet sollicitudin nulla molestie id. Sed consectetur quam nec est pellentesque, eget fermentum urna ultrices. Morbi placerat, velit at tempor ultricies, justo nunc vestibulum ante, et tincidunt lacus leo eget libero. Praesent eleifend pellentesque metus elementum malesuada. Quisque vel enim vel ligula accumsan condimentum. Mauris vel sagittis risus, eu tempor tortor.        </p>
+                <strong>3. Lorem ipsum dolor sit amet</strong>
+                <p>Etiam dolor sapien, venenatis vel orci et, malesuada bibendum nibh. Interdum et malesuada fames ac ante ipsum primis in faucibus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce blandit pretium orci, nec dictum nisl eleifend sit amet. quis molestie leo. Pellentesque varius euismod lorem, eu euismod risus euismod et. Cras ut dolor a orci mollis vulputate elementum sit amet dolor. Ut dignissim sagittis elit, sit amet sollicitudin nulla molestie id. Sed consectetur quam nec est pellentesque, eget fermentum urna ultrices. Morbi placerat, velit at tempor ultricies, justo nunc vestibulum ante, et tincidunt lacus leo eget libero. Praesent eleifend pellentesque metus elementum malesuada. Quisque vel enim vel ligula accumsan condimentum. Mauris vel sagittis risus, eu tempor tortor.        </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Je refuse</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">J'accepte</button>
+            </div>
+        </div>
+    </div>
+</div>

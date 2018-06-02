@@ -1,0 +1,75 @@
+﻿@model IEnumerable<OCR_Prototype.Models.OCRModel.getDetails>
+@Styles.Render("/Content/hover.css")
+@{
+    /**/
+    ViewBag.Title = "FormDetail";
+}
+
+<h4 class="mb-5">Form Detail</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    {
+        int ID = 0;
+        string refer = "";
+
+        foreach (var item in Model)
+        {
+            ID = item.ID;
+            refer = item.Reference;
+        }
+
+        <div class="form-horizontal">
+            <div class="form">
+                <div class="form-group row">
+                    <div class="col-1">
+                        @Html.Label("ID")
+                    </div>
+                    <div class="col-5">
+                        @Html.TextBox("ID", ID, new { @class = "form-control", @readonly = "readonly" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-1">
+                        @Html.Label("Reference")
+                    </div>
+                    <div class="col-5">
+                        @Html.TextBox("refer", refer, new { @class = "form-control", @readonly = "readonly" })
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <h4 class="mb-5">Extracted Details</h4>
+            <div class="form">
+
+                @{
+                    int i = 1;
+
+                    foreach (var item in Model)
+                    {
+                        <div class="form-group row">
+                            <div class="col-1">
+                                @Html.Label("Text " + i)
+                            </div>
+                            <div class="col-5">
+
+                                @Html.TextArea("ID " + i, item.Crop_Text, new { @class = "form-control" })
+                            </div>
+
+                        </div>
+                        i++;
+                    }
+                }
+            </div> <!--end .form-->
+            <hr />
+            <div class="form-group row">
+                <div class="col-3">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                    <input type="button" value="Back" class="btn btn-secondary" onclick="window.history.back();" />
+                </div>
+
+            </div>
+        </div>
+    }
+}

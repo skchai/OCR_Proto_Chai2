@@ -1,0 +1,62 @@
+﻿@model IEnumerable<OCR_Prototype.Models.OCRModel.getDetails>
+@Styles.Render("/Content/hover.css")
+@{
+    /**/
+    ViewBag.Title = "FormDetail";
+}
+
+<h2>FormDetail</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    {
+        int ID = 0;
+        string refer = "";
+
+        foreach (var item in Model)
+        {
+            ID = item.ID;
+            refer = item.Reference;
+        }
+
+        <div class="form-horizontal">
+            <div class="form-inline">
+                <div class="col-sm-12">
+                    <div class="col-sm-5">
+                        @Html.Label("ID")
+                        @Html.TextBox("ID", ID, new { @class = "form-control", @readonly = "readonly" })
+                    </div>
+                    <div class="col-sm-offset-1 col-sm-5">
+                        @Html.Label("Reference")
+                        @Html.TextBox("refer", refer, new { @class = "form-control", @readonly = "readonly" })
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="form-inline">
+                <h3>Extracted Details</h3>
+                @{
+                    int i = 1;
+
+                    foreach (var item in Model)
+                    {
+                        <div class="col-sm-12">
+                            @Html.Label("Text " + i)
+                            @Html.TextArea("ID " + i, item.Crop_Text, new { @class = "form-control" })
+                        </div>
+                        <!--<div id="thumbwrap">
+                            <span> class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                        </div>-->
+                        i++;
+                    }
+                }
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-9 col-md-2">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+}

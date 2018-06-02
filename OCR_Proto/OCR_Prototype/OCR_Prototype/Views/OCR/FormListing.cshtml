@@ -1,0 +1,31 @@
+﻿@model IEnumerable<OCR_Prototype.Models.OCRModel.Listing>
+
+@{
+    ViewBag.Title = "FormListing";
+}
+
+<h2>FormDetail</h2>
+
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Reference</th>
+        <th>Action</th>
+    </tr>
+@foreach (var item in Model)
+{
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reference)
+            </td>
+            <td>
+                <!--Html.ActionLink("Details", "FormDetail", new {  id=item.ID })-->
+                @Html.ActionLink("Details", "FormDetail", new {  id = item.Reference })
+            </td>
+        </tr>
+}
+
+    </table>
